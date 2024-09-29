@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 DESCRIPTION = 'Search text on websites.'
 LONG_DESCRIPTION = 'This package allows you to search text on a webpage.'
 
@@ -14,7 +14,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(where='.'),
     license='MIT',
-    install_requires=['soupsieve>=2.6','beautifulsoup4>=4.12.3', 'requests'],
+    install_requires=['soupsieve>=2.6','beautifulsoup4>=4.12.3', 'requests', 'thefuzz>=0.22.1'],
     extras_require={
         "dev":["twine>=4.0.2"]
     },
