@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 DESCRIPTION = 'Search text on websites.'
-LONG_DESCRIPTION = 'This package allows you to search text on a webpage.'
+LONG_DESCRIPTION = 'SearchURL allows you to search text on a webpage. It supports basic pattern matching, and fuzzy matching.'
 
 setup(
     name="SearchURL",
@@ -19,13 +19,14 @@ setup(
         "dev":["twine>=4.0.2"]
     },
     python_requires=">=3.10",
-    keywords=['python', 'web-scraping', 'search'],
+    keywords=['python', 'web-scraping', 'search', 'searchurl', 'SearchURL', 'Fuzzy matching', 'fuzzy search', 'web', 'scraping'],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "Programming Language :: Python :: 3",
-        "Operating System :: Unix",
-        "Operating System :: MacOS :: MacOS X",
-        "Operating System :: Microsoft :: Windows",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.10",
+        "Topic :: Text Processing :: Filters",
+        "Topic :: Text Processing"
     ]
 )
