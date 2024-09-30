@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.5'
+VERSION = '1.1.0'
 DESCRIPTION = 'Search text on websites.'
-LONG_DESCRIPTION = 'SearchURL allows you to search text on a webpage. It supports basic pattern matching, and fuzzy matching.'
+with open('README.md', 'r') as f:
+    LONG_DESCRIPTION = f.read()
 
 setup(
     name="SearchURL",
@@ -14,12 +15,13 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(where='.'),
     license='MIT',
-    install_requires=['soupsieve>=2.6','beautifulsoup4>=4.12.3', 'requests', 'thefuzz>=0.22.1'],
+    install_requires=['soupsieve>=2.6','beautifulsoup4>=4.12.3', 'requests', 'thefuzz>=0.22.1',
+                      'chromadb>=0.5.11', 'sentence-transformers>=3.1.1'],
     extras_require={
         "dev":["twine>=4.0.2"]
     },
     python_requires=">=3.10",
-    keywords=['python', 'web-scraping', 'search', 'searchurl', 'SearchURL', 'Fuzzy matching', 'fuzzy search', 'web', 'scraping'],
+    keywords=['python', 'web-scraping', 'search', 'searchurl', 'SearchURL', 'Fuzzy matching', 'fuzzy search', 'web', 'scraping', 'semantic search', 'nlp', 'natural language processing'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

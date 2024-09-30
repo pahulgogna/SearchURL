@@ -1,21 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
 from thefuzz import process, fuzz
+from vdb import VectorDB
 
 class SearchURL:
 
-    def __init__(self, cache:bool=True) -> None:
+    def __init__(self, cache:bool=True, createVector:bool = False) -> None:
         '''
         Args:
             cache: If True, caches the webpage content for faster subsequent searches.
+            createVector: set to True for using semantic search
         '''
-        self.searched = {}
-        self.cache = cache
+        self.__searched = {}
+        self.__cache = cache
+        if createVector:
+            print('starting chromaDB instance...')
+            self.db = VectorDB()
 
     def __getAllData(self, url:str) -> list[str]:
         
-        if self.cache:
-                data = self.searched.get(url)
+        if self.__cache:
+                data = self.__searched.get(url)
                 if data: return data
         
         try:
@@ -23,9 +28,9 @@ class SearchURL:
 
             soup = BeautifulSoup(response.content, "html.parser")
 
-            data = [text.strip('/ \\') for text in soup.get_text(' ').split('\n') if text and text != ' ']
+            data = [data.strip(' ') for data in [text.strip('\t') for text in soup.get_text(' ').split('\n') if text and text != ' ' and text != '\t'] if data != ' ']
             
-            if self.cache: self.searched[url] = data
+            if self.__cache: self.__searched[url] = data
 
             return data
 
@@ -93,3 +98,29 @@ class SearchURL:
         matched_data = [' | '.join([match[0] for match in process.extract(keyword, data, limit=limit, scorer= fuzz.token_set_ratio) if match[1]>=filter]) for keyword in keywords]
 
         return {'success': True, 'data':" | ".join([match for match in matched_data if match])}
+
+    def createEmbededData(self, url: str) -> VectorDB:
+        """Creates an embedded data representation using ChromaDB.
+
+        Args:
+            url (str): The URL of the webpage.
+
+        Returns:
+            dict: A dictionary containing the success status and the db object.
+                - success (bool): True if the embedding was successful, False otherwise.
+                - detail (str, optional): A detailed error message if the embedding failed.
+                - db (VectorDB, optional): A db object to query the newly created embeddings.
+        """
+
+        try:
+            data = self.__getAllData(url)
+            data = [sentence for sentence in data if len(sentence.split()) > 5 and not ''.join(sentence.split('.')).isdigit()]
+        except Exception as e:
+            return {'success': False, 'detail': e.__str__()}
+
+        self.db.add(
+            documents=data,
+            metadatas=[{'source':url} for i in range(len(data))]
+        )
+
+        return {'success':True, 'db': self.db}
