@@ -1,4 +1,7 @@
 
+## SearchURL
+![PyPI - Downloads](https://img.shields.io/pypi/dm/SearchURL)
+
 ## Installation
 
 Install SearchURL with pip
