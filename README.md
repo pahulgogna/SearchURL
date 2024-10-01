@@ -1,6 +1,13 @@
 
-## SearchURL
-![PyPI - Downloads](https://img.shields.io/pypi/dm/SearchURL)
+<h2 align="center">
+SearchURL
+  <br/>
+  <br/>
+<img src="https://img.shields.io/pepy/dt/SearchURL"/>
+<img src="https://img.shields.io/pypi/v/SearchURL"/>
+<img src="https://img.shields.io/pypi/status/SearchURL"/>
+<img src="https://img.shields.io/pypi/l/SearchURL"/>
+</h2>
 
 ## Installation
 
@@ -77,7 +84,7 @@ else:
     print(data.get('detail')) # data = {'success': False, 'detail': 'ERROR'}
 ```
 
-## Errors: 
+## Errors
 If this package runs into some error while fetching and searching, it will return an object like this: 
 {'success': False, 'detail': 'The error that occurred'}
 
