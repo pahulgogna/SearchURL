@@ -3,6 +3,7 @@
 SearchURL
   <br/>
   <br/>
+<img src="https://img.shields.io/pypi/dm/searchurl"/>
 <img src="https://img.shields.io/pepy/dt/SearchURL"/>
 <img src="https://img.shields.io/pypi/v/SearchURL"/>
 <img src="https://img.shields.io/pypi/status/SearchURL"/>
