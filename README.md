@@ -79,7 +79,7 @@ data = search.createEmbededData("https://en.wikipedia.org/wiki/Web_scraping") # 
 if data.get('success'): # data = {'success': True, 'db': db}
     db = data.get('db') 
     results = db.query(keywords=['benefits', 'what benifits can we get from web scraping'], limit=10)
-    print(results)
+    print(results.get('documents'))
 
 else:
     print(data.get('detail')) # data = {'success': False, 'detail': 'ERROR'}
